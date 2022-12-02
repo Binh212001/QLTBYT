@@ -1,0 +1,17 @@
+.item {
+  text-align: center;
+  background-color: var(--white-bg);
+  padding: 20px;
+}
+
+.item__boder {
+  border-radius: 10px;
+}
+.item_p2 {
+  padding-top: 20px;
+}
+.preview__cus {
+  background-color: var(--white-bg);
+  padding: 30px;
+  border: 10px;
+}
