@@ -1,36 +1,38 @@
 import { Col, Row } from 'antd';
-import React, { useState } from 'react';
-import { MoreOutlined } from '@ant-design/icons';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import HeadingPage from '../../components/heading/HeadingPage';
 import TableDynamic from '../../components/table/TableDynamic';
-import FormEquitment from '../../components/form/FormEquitment';
+import { fetchListEqmStart } from '../../reduxs/actions/equitmentAction';
 
 const columns = [
   {
     title: 'Id',
-    dataIndex: 'id',
     key: 'id',
   },
   {
     title: 'Name',
-    dataIndex: 'name',
     key: 'name',
   },
   {
-    title: 'Department',
-    dataIndex: 'department',
-    key: 'department',
+    title: 'Model',
+    key: 'model',
   },
 
   {
     title: 'Action',
-    dataIndex: 'action',
     key: 'action',
   },
 ];
 function Equitment() {
   const [isForm, setIsForm] = useState(false);
 
+  const dispatch = useDispatch();
+  const { eqm, count } = useSelector((state) => state.eqm);
+
+  useEffect(() => {
+    dispatch(fetchListEqmStart());
+  }, [dispatch]);
   const showForm = () => {
     setIsForm(true);
   };
@@ -48,11 +50,13 @@ function Equitment() {
         />
 
         <Row>
-          <Col span={isForm ? 24 : 0}>
-            <FormEquitment />
-          </Col>
           <Col span={24}>
-            <TableDynamic columns={columns} />
+            <TableDynamic
+              columns={columns}
+              row={eqm}
+              count={count}
+              tName='eqm'
+            />
           </Col>
         </Row>
       </div>

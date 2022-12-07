@@ -1,6 +1,8 @@
-import React from 'react';
-import { Badge, Col, Row, Tag, Table, Progress } from 'antd';
+import React, { useEffect } from 'react';
+import { Col, Row, Tag, Table, Progress } from 'antd';
 import './Home.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchListCusStart } from '../../reduxs/actions/cusAction';
 function GeneralItem({ item }) {
   return (
     <Col sm={24} lg={6} md={12} className='p10'>
@@ -18,22 +20,13 @@ function GeneralItem({ item }) {
   );
 }
 
-const dataSource = [
-  {
-    key: '1',
-    name: 'Mike',
-    age: 32,
-    address: '10 Downing Street',
-  },
-  {
-    key: '2',
-    name: 'John',
-    age: 42,
-    address: '10 Downing Street',
-  },
-];
-
 const columns = [
+  {
+    title: 'Id',
+    dataIndex: 'id',
+    key: 'id',
+  },
+
   {
     title: 'Name',
     dataIndex: 'name',
@@ -49,31 +42,53 @@ const columns = [
     dataIndex: 'address',
     key: 'address',
   },
+  {
+    title: 'Phone',
+    dataIndex: 'phone',
+    key: 'phone',
+  },
+  {
+    title: 'Email',
+    dataIndex: 'email',
+    key: 'email',
+  },
+  {
+    title: 'Gender',
+    dataIndex: 'gender',
+    key: 'gender',
+    render: (text) => (text ? 'Nam' : 'Nu'),
+  },
+];
+
+const item = [
+  {
+    text: 'Import',
+    cash: '34000',
+    color: 'blue',
+  },
+  {
+    text: 'Export',
+    cash: '34000',
+    color: 'cyan',
+  },
+
+  {
+    text: 'Payment',
+    cash: '34000',
+    color: 'green',
+  },
+  {
+    text: 'Due Balance',
+    cash: '34000',
+    color: 'red',
+  },
 ];
 function Home() {
-  const item = [
-    {
-      text: 'Import',
-      cash: '34000',
-      color: 'blue',
-    },
-    {
-      text: 'Export',
-      cash: '34000',
-      color: 'cyan',
-    },
-
-    {
-      text: 'Payment',
-      cash: '34000',
-      color: 'green',
-    },
-    {
-      text: 'Due Balance',
-      cash: '34000',
-      color: 'red',
-    },
-  ];
+  const dispatch = useDispatch();
+  const customer = useSelector((state) => state.customer.customer);
+  useEffect(() => {
+    dispatch(fetchListCusStart());
+  }, [dispatch]);
   return (
     <div className='wrapper'>
       <Row>
@@ -83,11 +98,17 @@ function Home() {
       </Row>
       <div className='preview'>
         <Row>
-          <Col className='p10' sm={24} md={24} lg={18}>
+          <Col
+            className='p10'
+            sm={24}
+            md={24}
+            lg={18}
+            style={{ overflowY: 'scroll' }}>
             <Table
-              dataSource={dataSource}
-              columns={columns}
+              dataSource={customer}
+              rowKey='id'
               pagination={false}
+              columns={columns}
             />
           </Col>
           <Col className='p10 ' sm={24} md={24} lg={6}>

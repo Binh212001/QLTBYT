@@ -21,6 +21,11 @@ const columns = [
     dataIndex: 'createdAt',
     key: 'createdAt',
   },
+  {
+    title: 'Action',
+    dataIndex: 'action',
+    key: 'action',
+  },
 ];
 
 function HDNInvoice() {
@@ -46,7 +51,7 @@ function HDNInvoice() {
             <InvoiceForm people='SupplierID' />
           </Col>
           <Col span={24}>
-            <TableDynamic columns={columns} />
+            <TableDynamic columns={columns} row={[]} tName='hdn' />
           </Col>
         </Row>
       </div>

@@ -11,12 +11,7 @@ function Header() {
     },
   ];
 
-  const handleLogout = () => {
-    console.log(
-      '🚀 ~ file: Header.jsx ~ line 29 ~ handleLogout ~ handleLogout',
-      handleLogout,
-    );
-  };
+  const handleLogout = () => {};
 
   return (
     <Row justify='end' align='middle'>

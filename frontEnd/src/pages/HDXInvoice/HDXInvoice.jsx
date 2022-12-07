@@ -21,6 +21,11 @@ const columns = [
     dataIndex: 'createdAt',
     key: 'createdAt',
   },
+  {
+    title: 'Action',
+    dataIndex: 'action',
+    key: 'action',
+  },
 ];
 function HDXInvoice() {
   const [isForm, setIsForm] = useState(false);
@@ -45,7 +50,7 @@ function HDXInvoice() {
             <InvoiceForm people='CustomerId' />
           </Col>
           <Col span={24}>
-            <TableDynamic columns={columns} />
+            <TableDynamic columns={columns} row={[]} tName='hdx' />
           </Col>
         </Row>
       </div>

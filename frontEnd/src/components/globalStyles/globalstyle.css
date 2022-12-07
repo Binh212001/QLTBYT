@@ -58,3 +58,12 @@ h4 {
 .p6 {
   padding: 6px;
 }
+
+input {
+  width: 100%;
+}
+
+.table,
+.tbrow > td {
+  border: 1px solid #333;
+}

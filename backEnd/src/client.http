@@ -1,0 +1,176 @@
+POST  http://localhost:4000/auth/register
+Content-Type: application/json
+
+{
+  "username":"admin",
+  "password":"11111"
+}
+
+#### 
+
+
+POST  http://localhost:4000/auth/login
+Content-Type: application/json
+
+{
+  "username":"admin",
+  "password":"11111"
+}
+
+### Get all Eqm
+
+
+
+GET   http://localhost:4000/equitment
+Content-Type: application/json
+
+
+### Post all Eqm
+
+
+
+POST    http://localhost:4000/equitment
+Content-Type: application/json
+
+
+{
+  "name": "Xe Cap cuu",
+  "model": "NHDS",
+"department":"Benh vien",
+"branch":"LocalBrand",
+"country":"TQuoc",
+"img":"anh",
+"size":"2x2x2",
+"func":"Vuot den do"
+}
+###
+
+GET   http://localhost:4000/equitment/4239
+Content-Type: application/json
+
+
+###
+
+DELETE    http://localhost:4000/equitment/4239
+Content-Type: application/json
+
+###
+
+PUT     http://localhost:4000/equitment/3931
+Content-Type: application/json
+
+
+{
+  "id":3931,
+  "name": "Xe Cap cuu 123",
+  "model": "NHDS",
+"department":"Benh vien XYZ ",
+"branch":"LocalBrand",
+"country":"TQuoc",
+"img":"anh 1111",
+"size":"2x2x2",
+"func":"Vuot den xanh"
+}
+
+
+///////////////////Cus
+
+
+### Get all Cus
+
+
+
+GET   http://localhost:4000/customer
+Content-Type: application/json
+
+
+### Post all Cus
+
+
+
+POST    http://localhost:4000/customer
+Content-Type: application/json
+
+
+{
+  "id":3062,
+  "name": "Pham Ngoc ",
+  "address":"Ha Noi",
+  "phone":  "0987272867",
+  "email": "NN@gmial.com",
+  "age": 20,
+  "gender": false
+}
+###
+
+GET   http://localhost:4000/customer/416
+Content-Type: application/json
+
+
+###
+
+DELETE    http://localhost:4000/customer/3060
+Content-Type: application/json
+
+###
+
+PUT     http://localhost:4000/customer/4845
+Content-Type: application/json
+
+
+{
+  "id":4845,
+  "name": "Pham Ngoc Binh",
+  "address":"Ha Noi",
+  "phone":  "0987272867",
+  "email": "Binh@gmial.com",
+  "age": 22,
+  "gender": true
+}
+
+//////////////////////////Suplier
+###
+
+GET   http://localhost:4000/supplier
+Content-Type: application/json
+
+
+### Post all Cus
+
+
+
+POST    http://localhost:4000/supplier
+Content-Type: application/json
+
+
+{
+  "id":"11113",
+  "name": "Pham Ngoc Binh",
+  "address":"Ha Noi",
+  "phone":  "0987272867",
+  "email": "Binh@gmial.com"
+}
+###
+
+GET   http://localhost:4000/supplier/7060
+Content-Type: application/json
+
+
+###
+
+DELETE    http://localhost:4000/supplier/7060
+Content-Type: application/json
+
+###
+
+PUT     http://localhost:4000/supplier/7060
+Content-Type: application/json
+
+
+{
+  "id":7060,
+  "name": "Pham Ngoc Binh  123",
+  "address":"Ha Noi ",
+  "phone":  "0987272867",
+  "email": "Binh@gmial.com"
+}

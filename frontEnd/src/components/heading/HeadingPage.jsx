@@ -8,10 +8,10 @@ function HeadingPage({ title_btn, showForm, hideForm, placeholder }) {
     <Row justify={'space-between'} align='middle'>
       <Col span={9} className='p10 '>
         <Row align='middle'>
-          <Col>
+          <Col span={20}>
             <Input placeholder={placeholder} />
           </Col>
-          <Col className='p6'>
+          <Col span={4}>
             <SearchOutlined />
           </Col>
         </Row>
@@ -28,7 +28,7 @@ function HeadingPage({ title_btn, showForm, hideForm, placeholder }) {
             </Button>
           </div>
           <div className='p10'>
-            <Button onClick={() => showForm()} type='primary'>
+            <Button onClick={() => showForm(true)} type='primary'>
               {title_btn}
             </Button>
           </div>

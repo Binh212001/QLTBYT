@@ -13,5 +13,9 @@
 .preview__cus {
   background-color: var(--white-bg);
   padding: 30px;
-  border: 10px;
+  border-radius: 10px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
