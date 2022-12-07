@@ -28,7 +28,7 @@ function DynamicForm({ formType, hideForm, page, selectedRow, setSelectedRow }) 
         dispatch(fetchListCusStart());
         hideForm();
       }
-    } else {
+    } else if (page === 'Supplier') {
       console.log(page);
       if (!selectedRow.id) {
         await supApi.postSup({
@@ -48,6 +48,8 @@ function DynamicForm({ formType, hideForm, page, selectedRow, setSelectedRow }) 
         });
         hideForm();
       }
+    } else {
+      console.log(data);
     }
   };
 
@@ -62,7 +64,6 @@ function DynamicForm({ formType, hideForm, page, selectedRow, setSelectedRow }) 
         background: '#fff',
         padding: '30px',
         width: '500px',
-        height: '300px',
         zIndex: 999,
       }}
       onSubmit={handleSubmit(onSubmit)}>

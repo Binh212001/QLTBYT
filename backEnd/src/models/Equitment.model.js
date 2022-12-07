@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 
 const equitmentSchema = new Schema({
   id: {
-    type: Number,
+    type: String,
     required: true,
   },
   name: {
@@ -30,15 +30,12 @@ const equitmentSchema = new Schema({
     type: String,
     required: true,
   },
-
-  size: {
-    type: String,
-  },
-  func: {
+  description: {
     type: String,
   },
   quantyty: {
     type: Number,
+    default: 0,
   },
 });
 

@@ -68,8 +68,7 @@ Content-Type: application/json
 "branch":"LocalBrand",
 "country":"TQuoc",
 "img":"anh 1111",
-"size":"2x2x2",
-"func":"Vuot den xanh"
+"description":"Vuot den xanh"
 }
 
 
