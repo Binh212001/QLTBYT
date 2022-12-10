@@ -1,6 +1,8 @@
 import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, Form, Input, InputNumber, Row } from 'antd';
 import React from 'react';
+import apiInstance from '../../apis/apiInstance';
+import moment from 'moment';
 
 const layout = {
   labelCol: { span: 4 },
@@ -18,8 +20,17 @@ function InvoiceForm({ people }) {
       range: '${label} must be between ${min} and ${max}',
     },
   };
-  const onFinish = (values) => {
-    console.log(values);
+  const onFinish = async (values) => {
+    const id = parseInt(Math.random() * 100000);
+    const item = values.invoice.map((data) => ({ ...data, exid: id }));
+    const newValue = {
+      id,
+      customerid: parseInt(values.customerid.customerid),
+      invoice: item,
+      createdAt: moment(new Date()).format('dd/mm/yyyy'),
+    };
+    console.log('🚀 ~ file: InvoiceForm.jsx:26 ~ onFinish ~ newValue', newValue);
+    await apiInstance.post('/export', newValue);
   };
 
   return (
@@ -30,10 +41,7 @@ function InvoiceForm({ people }) {
         name='nest-messages'
         onFinish={onFinish}
         validateMessages={validateMessages}>
-        <Form.Item
-          name={['customerid', 'customerid']}
-          label={people}
-          rules={[{ required: true }]}>
+        <Form.Item name={['customerid', 'customerid']} label={people} rules={[{ required: true }]}>
           <Input />
         </Form.Item>
 
@@ -47,7 +55,7 @@ function InvoiceForm({ people }) {
                     key='0'
                     labelCol={8}
                     label='EquitmentId'
-                    name={[field.name, 'equitmentid']}
+                    name={[field.name, 'eid']}
                     rules={[
                       {
                         required: true,
@@ -77,7 +85,7 @@ function InvoiceForm({ people }) {
                     key='2'
                     labelCol={8}
                     label='Quantyty'
-                    name={[field.name, 'quantyty']}
+                    name={[field.name, 'amount']}
                     rules={[
                       {
                         required: true,
@@ -91,13 +99,8 @@ function InvoiceForm({ people }) {
                 </Row>
               ))}
 
-              <Form.Item
-                wrapperCol={{ ...layout.wrapperCol, offset: 9 }}
-                className='center'>
-                <Button
-                  type='dashed'
-                  onClick={() => add()}
-                  icon={<PlusOutlined />}>
+              <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 9 }} className='center'>
+                <Button type='dashed' onClick={() => add()} icon={<PlusOutlined />}>
                   Add
                 </Button>
               </Form.Item>

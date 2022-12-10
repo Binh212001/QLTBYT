@@ -1,10 +1,10 @@
 const Equitment = require('../models/Equitment.model');
 const pagination = require('../utils/pagination');
-const getListE = async () => {
+const getListE = async (page) => {
   try {
     return await Equitment.find({})
-      .skip((await pagination(1)).skip)
-      .limit((await pagination(1)).limit);
+      .skip((await pagination(page)).skip)
+      .limit((await pagination(page)).limit);
   } catch (error) {
     throw new Error(error);
   }
@@ -15,9 +15,7 @@ const getListE = async () => {
 const getEById = async (id) => {
   try {
     if (id) {
-      const idParserInt = parseInt(id);
-
-      return await Equitment.find({ id: idParserInt });
+      return await Equitment.findById(id);
     } else {
       return;
     }
@@ -57,8 +55,7 @@ const putE = async (data) => {
 const delE = async (id) => {
   try {
     if (id) {
-      const idParserInt = parseInt(id);
-      return await Equitment.remove({ id: idParserInt });
+      return await Equitment.remove({ id });
     } else {
       return;
     }

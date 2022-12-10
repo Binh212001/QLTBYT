@@ -32,11 +32,7 @@ const columns = [
     dataIndex: 'name',
     key: 'name',
   },
-  {
-    title: 'Age',
-    dataIndex: 'age',
-    key: 'age',
-  },
+
   {
     title: 'Address',
     dataIndex: 'address',
@@ -46,17 +42,6 @@ const columns = [
     title: 'Phone',
     dataIndex: 'phone',
     key: 'phone',
-  },
-  {
-    title: 'Email',
-    dataIndex: 'email',
-    key: 'email',
-  },
-  {
-    title: 'Gender',
-    dataIndex: 'gender',
-    key: 'gender',
-    render: (text) => (text ? 'Nam' : 'Nu'),
   },
 ];
 
@@ -98,18 +83,8 @@ function Home() {
       </Row>
       <div className='preview'>
         <Row>
-          <Col
-            className='p10'
-            sm={24}
-            md={24}
-            lg={18}
-            style={{ overflowY: 'scroll' }}>
-            <Table
-              dataSource={customer}
-              rowKey='id'
-              pagination={false}
-              columns={columns}
-            />
+          <Col className='p10' sm={24} md={24} lg={18} style={{ overflowY: 'scroll' }}>
+            <Table dataSource={customer} rowKey='id' pagination={false} columns={columns} />
           </Col>
           <Col className='p10 ' sm={24} md={24} lg={6}>
             <div className='preview__cus'>

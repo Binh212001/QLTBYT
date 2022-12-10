@@ -6,7 +6,7 @@ import cusApi from '../../apis/cusApi';
 import DynamicForm from '../../components/form/DynamicForm';
 import HeadingPage from '../../components/heading/HeadingPage';
 import { fetchListCusStart } from '../../reduxs/actions/cusAction';
-
+import { Pagination } from 'antd';
 const columns = [
   {
     title: 'Id',
@@ -42,7 +42,7 @@ function Customer() {
   });
 
   const dispatch = useDispatch();
-  const { customer } = useSelector((state) => state.customer);
+  const { customer, count } = useSelector((state) => state.customer);
 
   useEffect(() => {
     dispatch(fetchListCusStart());
@@ -66,6 +66,10 @@ function Customer() {
   const deleteCus = async (id) => {
     await cusApi.delCus(id);
     dispatch(fetchListCusStart());
+  };
+
+  const handleCurrentPage = (page) => {
+    dispatch(fetchListCusStart(page));
   };
 
   return (
@@ -125,6 +129,12 @@ function Customer() {
               </table>
             </div>
           </Col>
+          <Pagination
+            defaultCurrent={1}
+            pageSize={7}
+            total={count}
+            onChange={(page) => handleCurrentPage(page)}
+          />
         </Row>
       </div>
     </div>

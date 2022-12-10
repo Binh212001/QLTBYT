@@ -1,4 +1,4 @@
-const pagination = async (page, limit = 7) => {
+const pagination = async (page = 1, limit = 7) => {
   if (page <= 0) {
     return {
       skip: 0,

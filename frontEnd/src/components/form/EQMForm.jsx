@@ -1,21 +1,20 @@
 import React from 'react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import apiInstance from '../../apis/apiInstance';
 import eqmApi from '../../apis/eqmApi';
+import { fetchListEqmStart } from '../../reduxs/actions/equitmentAction';
 
 function EQMForm({ page, formType, selectedRow, hideForm, setSelectedRow }) {
-  const {
-    register,
-    handleSubmit,
-
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const [file, setFile] = useState();
+
+  const dispatch = useDispatch();
   const onSubmit = async (data) => {
     if (formType) {
-      const fileName = Date.now() + data.file[0].name;
-      console.log('🚀 ~ file: EQMForm.jsx:17 ~ onSubmit ~ fileName', fileName);
+      const fileName = Date.now() + file.name;
       const formData = new FormData();
       formData.append('name', fileName);
       formData.append('img', file);
@@ -25,16 +24,27 @@ function EQMForm({ page, formType, selectedRow, hideForm, setSelectedRow }) {
         img: fileName,
       };
 
+      console.log('🚀 ~ file: EQMForm.jsx:28 ~ onSubmit ~ newEqm', newEqm);
       await eqmApi.postEqm(newEqm);
-      // await apiConfig.post('/upload', formData, {
-      //   headers: {
-      //     'Content-Type': 'Multipart/formData',
-      //   },
-      // });
+      await apiInstance.post('/upload', formData, {
+        headers: {
+          'Content-Type': 'Multipart/formData',
+        },
+      });
+      setSelectedRow({
+        id: '',
+        name: '',
+        model: '',
+        department: '',
+        country: '',
+        branch: '',
+        description: '',
+      });
       hideForm();
+
+      dispatch(fetchListEqmStart());
     } else {
-      const fileName = Date.now() + data.file[0].name;
-      console.log('🚀 ~ file: EQMForm.jsx:17 ~ onSubmit ~ fileName', fileName);
+      const fileName = Date.now() + file.name;
       const formData = new FormData();
       formData.append('name', fileName);
       formData.append('img', file);
@@ -45,12 +55,17 @@ function EQMForm({ page, formType, selectedRow, hideForm, setSelectedRow }) {
       };
 
       await eqmApi.putEqm(updateEqm);
+
       hideForm();
+      dispatch(fetchListEqmStart());
     }
   };
 
   const handleChangeEqm = (e) => {
     setSelectedRow({ ...selectedRow, [e.target.name]: [e.target.value] });
+  };
+  const handleChangeEqmFile = (e) => {
+    setFile(e.target.files[0]);
   };
   return (
     <form
@@ -114,12 +129,7 @@ function EQMForm({ page, formType, selectedRow, hideForm, setSelectedRow }) {
         onChange={(e) => handleChangeEqm(e)}
       />{' '}
       <br />
-      <input
-        type='file'
-        onChange={(e) => handleChangeEqm(e)}
-        {...register('file', { required: true })}
-      />
-      {errors.file && <span>This field is required</span>}
+      <input type='file' onChange={(e) => handleChangeEqmFile(e)} />
       <br />
       <br />
       {<button type='submit'>Submit</button>}

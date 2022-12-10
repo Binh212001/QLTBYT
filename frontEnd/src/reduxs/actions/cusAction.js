@@ -1,10 +1,10 @@
 import cusApi from '../../apis/cusApi';
 import * as Type from '../constant/constant';
 
-export const fetchListCusStart = () => {
+export const fetchListCusStart = (page) => {
   return async (dispatch) => {
     return cusApi
-      .fetchListCus()
+      .fetchListCus(page)
       .then((data) => dispatch(fetchListCusSuccess(data)))
       .catch((err) => {
         dispatch(fetchListCusFail());

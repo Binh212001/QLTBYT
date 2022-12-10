@@ -24,3 +24,8 @@ export const FETCH_SUP_BY_iD = 'FETCH_SUP_BY_iD';
 export const POST_NEW_SUP = 'POST_NEW_SUP';
 export const UPDATE_SUP = 'UPDATE_SUP';
 export const DELETE_SUP = 'DELETE_SUP';
+
+//EXport
+
+export const FETCH_LIST_EXPORT_SUCCESS = 'FETCH_LIST_EXPORT_SUCCESS';
+export const FETCH_LIST_EXPORT_FAIL = 'FETCH_LIST_EXPORT_FAIL';

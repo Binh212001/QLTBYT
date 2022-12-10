@@ -1,8 +1,12 @@
 const Customer = require('../models/Customer.model');
+const pagination = require('../utils/pagination');
 
-const getListC = async () => {
+const getListC = async (page) => {
   try {
-    return await Customer.find({});
+    const value = await Customer.find({})
+      .skip((await pagination(page)).skip)
+      .limit((await pagination(page)).limit);
+    return value;
   } catch (error) {
     throw new Error(error);
   }

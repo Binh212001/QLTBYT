@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
 
-const costomerSchema = require('./Customer.model');
-const equitmentSchema = require('./Equitment.model');
 const { Schema } = mongoose;
 
 const importSchema = new Schema({
@@ -9,13 +7,11 @@ const importSchema = new Schema({
     type: Number,
     require: true,
   },
-  customerId: { type: Number, ref: 'customer' },
-  product: {
-    product: [{ type: Schema.Types.ObjectId, ref: 'equitment' }],
-  },
+  supplierId: { type: Number, ref: 'supplier' },
   createdAt: {
     type: Date,
-    default: Date.now(),
+    required: true,
+    default: new Date(),
   },
 });
 

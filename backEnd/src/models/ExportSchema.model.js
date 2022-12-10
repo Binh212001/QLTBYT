@@ -1,22 +1,24 @@
 const mongoose = require('mongoose');
-
-const costomerSchema = require('./Customer.model');
-const equitmentSchema = require('./Equitment.model');
+const moment = require('moment');
 const { Schema } = mongoose;
 
-const importSchema = new Schema({
+const exportSchema = new Schema({
   id: {
     type: Number,
     require: true,
   },
-  supplierId: { Number, ref: 'supplier' },
-  product: [{ type: Schema.Types.ObjectId, ref: 'equitment' }],
+  customerid: { type: Number, ref: 'customer', require: true },
+  status: {
+    type: Boolean,
+    default: 1,
+  },
   createdAt: {
     type: Date,
-    default: Date.now(),
+    require: true,
+    default: new Date(),
   },
 });
 
-const model = mongoose.model('import', importSchema);
+const model = mongoose.model('export', exportSchema);
 
 module.exports = model;

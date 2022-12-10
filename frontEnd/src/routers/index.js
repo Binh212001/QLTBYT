@@ -1,7 +1,9 @@
 import Auth from '../pages/auth/Auth';
 import Customer from '../pages/customer/Customer';
+import EqmInfomation from '../pages/equitment/EqmInfomation';
 import Equitment from '../pages/equitment/Equitment';
 import HDNInvoice from '../pages/HDNInvoice/HDNInvoice';
+import HDXInfomation from '../pages/HDXInvoice/HDXInfomation';
 import HDXInvoice from '../pages/HDXInvoice/HDXInvoice';
 import Home from '../pages/home/Home';
 import Supplier from '../pages/supplier/Supplier';
@@ -12,6 +14,11 @@ const routes = [
     path: page.auth,
     element: <Auth />,
     layout: false,
+  },
+  {
+    path: page.eqmInfo,
+    element: <EqmInfomation />,
+    layout: true,
   },
   {
     path: page.home,
@@ -41,6 +48,11 @@ const routes = [
   {
     path: page.hdn,
     element: <HDNInvoice />,
+    layout: true,
+  },
+  {
+    path: page.exportInformation,
+    element: <HDXInfomation />,
     layout: true,
   },
 ];

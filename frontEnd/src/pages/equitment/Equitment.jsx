@@ -1,6 +1,7 @@
-import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
-import { Col, Row } from 'antd';
+import { DeleteOutlined, EditOutlined, EyeOutlined, ShopOutlined } from '@ant-design/icons';
+import { Col, Pagination, Row } from 'antd';
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import eqmApi from '../../apis/eqmApi';
 import EQMForm from '../../components/form/EQMForm';
@@ -10,20 +11,20 @@ import { fetchListEqmStart } from '../../reduxs/actions/equitmentAction';
 const columns = [
   {
     title: 'Id',
-    key: 'id',
+    key: 1,
   },
   {
     title: 'Name',
-    key: 'name',
+    key: 2,
   },
   {
     title: 'Model',
-    key: 'model',
+    key: 3,
   },
 
   {
     title: 'Action',
-    key: 'action',
+    key: 4,
   },
 ];
 function Equitment() {
@@ -57,12 +58,24 @@ function Equitment() {
     }
   };
   const hideForm = () => {
+    setSelectedRow({
+      id: '',
+      name: '',
+      model: '',
+      department: '',
+      country: '',
+      branch: '',
+      description: '',
+    });
     setIsForm(false);
   };
 
   const deleteEqm = async (id) => {
     await eqmApi.delEqm(id);
     dispatch(fetchListEqmStart());
+  };
+  const handleCurrentPage = (page) => {
+    dispatch(fetchListEqmStart(page));
   };
   return (
     <div className='wrapper'>
@@ -114,6 +127,9 @@ function Equitment() {
                         <td>
                           <EditOutlined onClick={() => showForm(false, row)} />
                           <DeleteOutlined onClick={() => deleteEqm(row.id)} />
+                          <Link to={`/equitment/${row._id}`}>
+                            <EyeOutlined />
+                          </Link>
                         </td>
                       </tr>
                     );
@@ -122,6 +138,12 @@ function Equitment() {
               </table>
             </div>
           </Col>
+          <Pagination
+            defaultCurrent={1}
+            pageSize={7}
+            total={count}
+            onChange={(page) => handleCurrentPage(page)}
+          />
         </Row>
       </div>
     </div>

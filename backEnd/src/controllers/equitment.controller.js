@@ -1,17 +1,13 @@
 const httpStatusCode = require('../config/constant');
-const {
-  getListE,
-  getEById,
-  postE,
-  putE,
-  delE,
-} = require('../services/equitment.service');
+const { getListE, getEById, postE, putE, delE } = require('../services/equitment.service');
 const Eqm = require('../models/Equitment.model');
 
 //@ getAll;
 const getAll = async (req, res) => {
+  const { page } = req.params;
+
   try {
-    const result = await getListE();
+    const result = await getListE(page);
     const count = await Eqm.countDocuments({});
 
     return res.json({ result, count });
@@ -48,9 +44,7 @@ const postEquiment = async (req, res) => {
 const removeEquiment = async (req, res) => {
   try {
     const result = await delE(req.params.id);
-    return res
-      .status(httpStatusCode.SUCCESS)
-      .json({ result, message: 'Deleted' });
+    return res.status(httpStatusCode.SUCCESS).json({ result, message: 'Deleted' });
   } catch (error) {
     return res.status(httpStatusCode.INTERNAL_SERVER).json({
       message: error.message,

@@ -1,16 +1,11 @@
 const httpStatusCode = require('../config/constant');
-const {
-  getListC,
-  getCById,
-  postC,
-  putC,
-  delC,
-} = require('../services/customer.service');
+const { getListC, getCById, postC, putC, delC } = require('../services/customer.service');
 const Customer = require('../models/Customer.model');
 
 const getAllCus = async (req, res) => {
+  const { page } = req.params;
   try {
-    const result = await getListC();
+    const result = await getListC(page);
     const count = await Customer.countDocuments({});
     return res.json({ result, count });
   } catch (error) {
@@ -57,9 +52,7 @@ const putCus = async (req, res) => {
 const delCus = async (req, res) => {
   try {
     const result = await delC(req.params.id);
-    return res
-      .status(httpStatusCode.SUCCESS)
-      .json({ result, message: 'Deleted' });
+    return res.status(httpStatusCode.SUCCESS).json({ result, message: 'Deleted' });
   } catch (error) {
     return res.status(httpStatusCode.INTERNAL_SERVER).json({
       message: error.message,

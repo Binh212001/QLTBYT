@@ -9,8 +9,7 @@ const {
 const express = require('express');
 const router = express.Router();
 
-router.get('/customer', getAllCus);
-router.get('/customer/:id', getCusById);
+router.get('/customer/:page', getAllCus);
 router.post('/customer', postCus);
 router.put('/customer/:id', putCus);
 router.delete('/customer/:id', delCus);
