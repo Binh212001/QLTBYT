@@ -5,6 +5,9 @@ import importApi from '../../apis/importApi';
 
 const columns = [
   {
+    title: 'Ma thiết bị',
+  },
+  {
     title: 'Tên thiết bị',
   },
   {
@@ -57,6 +60,7 @@ function HDNInformation() {
           {productList?.map((row, index) => {
             return (
               <tr className='tbrow' key={index}>
+                <td>{row?.eqm[0]?.id}</td>
                 <td>{row?.eqm[0]?.name}</td>
                 <td>{row.amount}</td>
                 <td>{row.price}$</td>

@@ -63,7 +63,7 @@ function HDNInvoice() {
         />
         <Row>
           <Col span={isForm ? 24 : 0}>
-            <InvoiceForm people='SupplierId' />
+            <InvoiceForm people='SupplierId' hideForm={hideForm} />
           </Col>
           <Col span={24}>
             <div

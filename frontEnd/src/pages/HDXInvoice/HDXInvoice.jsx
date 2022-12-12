@@ -60,7 +60,7 @@ function HDXInvoice() {
         />
         <Row>
           <Col span={isForm ? 24 : 0}>
-            <InvoiceForm people='CustomerId' />
+            <InvoiceForm people='CustomerId' hideForm={hideForm} />
           </Col>
           <Col span={24}>
             <div

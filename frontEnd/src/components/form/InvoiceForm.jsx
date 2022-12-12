@@ -24,7 +24,7 @@ const validateMessages = {
     range: '${label} must be between ${min} and ${max}',
   },
 };
-function InvoiceForm({ people }) {
+function InvoiceForm({ people, hideForm }) {
   const [errId, setErrId] = useState('');
 
   const dispatch = useDispatch();
@@ -44,6 +44,7 @@ function InvoiceForm({ people }) {
         };
         await apiInstance.post('/import', newValue);
         dispatch(fetchListImport());
+        hideForm();
       } else {
         setErrId('Mã nhà cung cấp không hợp lệ');
       }
@@ -63,6 +64,7 @@ function InvoiceForm({ people }) {
         };
         await apiInstance.post('/export', newValue);
         dispatch(fetchListExport());
+        hideForm();
       } else {
         setErrId('Mã khách hàng không hợp lệ');
       }
