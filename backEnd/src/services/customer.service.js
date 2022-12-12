@@ -3,9 +3,8 @@ const pagination = require('../utils/pagination');
 
 const getListC = async (page) => {
   try {
-    const value = await Customer.find({})
-      .skip((await pagination(page)).skip)
-      .limit((await pagination(page)).limit);
+    const value = await Customer.find({});
+
     return value;
   } catch (error) {
     throw new Error(error);
@@ -69,4 +68,25 @@ const delC = async (id) => {
   }
 };
 
-module.exports = { getListC, getCById, postC, putC, delC };
+const findByName = async (name) => {
+  try {
+    if (name) {
+      console.log('🚀 ~ file: customer.service.js:75 ~ findByName ~ name', name);
+      const value = Customer.aggregate([
+        {
+          $project: {
+            name: [name],
+            feeling: { $first: name },
+          },
+        },
+      ]);
+      return value;
+    } else {
+      return;
+    }
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+module.exports = { getListC, getCById, postC, putC, delC, findByName };

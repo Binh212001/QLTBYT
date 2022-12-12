@@ -2,6 +2,8 @@ import { Avatar, Row } from 'antd';
 import { BellFilled } from '@ant-design/icons/lib/icons';
 import React from 'react';
 import { Dropdown, Space } from 'antd';
+import { useDispatch } from 'react-redux';
+import { Logout } from '../../reduxs/actions/authAction';
 
 function Header() {
   const items = [
@@ -11,7 +13,10 @@ function Header() {
     },
   ];
 
-  const handleLogout = () => {};
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    dispatch(Logout());
+  };
 
   return (
     <Row justify='end' align='middle'>

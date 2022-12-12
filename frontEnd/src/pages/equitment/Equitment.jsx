@@ -1,8 +1,8 @@
-import { DeleteOutlined, EditOutlined, EyeOutlined, ShopOutlined } from '@ant-design/icons';
-import { Col, Pagination, Row } from 'antd';
+import { DeleteOutlined, EditOutlined, EyeOutlined } from '@ant-design/icons';
+import { Col, Row } from 'antd';
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import eqmApi from '../../apis/eqmApi';
 import EQMForm from '../../components/form/EQMForm';
 import HeadingPage from '../../components/heading/HeadingPage';
@@ -14,11 +14,11 @@ const columns = [
     key: 1,
   },
   {
-    title: 'Name',
+    title: 'Tên',
     key: 2,
   },
   {
-    title: 'Model',
+    title: 'Mẫu',
     key: 3,
   },
 
@@ -41,7 +41,7 @@ function Equitment() {
   });
 
   const dispatch = useDispatch();
-  const { eqm, count } = useSelector((state) => state.eqm);
+  const { eqm } = useSelector((state) => state.eqm);
 
   useEffect(() => {
     dispatch(fetchListEqmStart());
@@ -68,15 +68,14 @@ function Equitment() {
       description: '',
     });
     setIsForm(false);
+    dispatch(fetchListEqmStart());
   };
 
   const deleteEqm = async (id) => {
     await eqmApi.delEqm(id);
     dispatch(fetchListEqmStart());
   };
-  const handleCurrentPage = (page) => {
-    dispatch(fetchListEqmStart(page));
-  };
+
   return (
     <div className='wrapper'>
       <div>
@@ -91,12 +90,17 @@ function Equitment() {
         ) : null}
       </div>
 
-      <div className='container'>
+      <div
+        className='container'
+        style={{
+          height: '500px',
+          padding: '20px',
+        }}>
         <HeadingPage
-          title_btn='Add New Equitment'
+          title_btn='thiết bị'
           showForm={showForm}
           hideForm={hideForm}
-          placeholder='Search By Name'
+          placeholder='Mã thiết bị'
         />
 
         <Row>
@@ -109,6 +113,7 @@ function Equitment() {
                 className='table'
                 style={{
                   width: '100%',
+                  height: '350px',
                 }}>
                 <thead>
                   <tr className='tbrow'>
@@ -126,7 +131,9 @@ function Equitment() {
                         <td>{row.model}</td>
                         <td>
                           <EditOutlined onClick={() => showForm(false, row)} />
+                          &nbsp;&nbsp;&nbsp;&nbsp;
                           <DeleteOutlined onClick={() => deleteEqm(row.id)} />
+                          &nbsp;&nbsp;&nbsp;&nbsp;
                           <Link to={`/equitment/${row._id}`}>
                             <EyeOutlined />
                           </Link>
@@ -138,12 +145,6 @@ function Equitment() {
               </table>
             </div>
           </Col>
-          <Pagination
-            defaultCurrent={1}
-            pageSize={7}
-            total={count}
-            onChange={(page) => handleCurrentPage(page)}
-          />
         </Row>
       </div>
     </div>

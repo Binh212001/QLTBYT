@@ -1,8 +1,8 @@
 import apiInstance from './apiInstance';
 
 const eqmApi = {
-  fetchListEqm: (page) => {
-    return apiInstance.get('/equitment/' + page);
+  fetchListEqm: () => {
+    return apiInstance.get('/equitment');
   },
   fetchEqmById: (id) => {
     return apiInstance.get('/equitment/item/' + id);

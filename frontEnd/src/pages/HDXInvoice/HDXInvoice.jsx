@@ -3,9 +3,9 @@ import { Col, Row } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import apiInstance from '../../apis/apiInstance';
 import InvoiceForm from '../../components/form/InvoiceForm';
 import HeadingPage from '../../components/heading/HeadingPage';
-import TableDynamic from '../../components/table/TableDynamic';
 import { fetchListInvoiceStart } from '../../reduxs/actions/exportAction';
 
 const columns = [
@@ -15,11 +15,11 @@ const columns = [
   },
 
   {
-    title: 'Customer',
+    title: 'Khách hàng',
     key: 2,
   },
   {
-    title: 'CreatedAt',
+    title: 'Ngày xuất',
     key: 3,
   },
   {
@@ -31,12 +31,13 @@ const columns = [
 function HDXInvoice() {
   const [isForm, setIsForm] = useState(false);
 
-  const { invoice, count } = useSelector((state) => state.export);
+  const { invoice } = useSelector((state) => state.export);
   const showForm = () => {
     setIsForm(true);
   };
   const hideForm = () => {
     setIsForm(false);
+    dispatch(fetchListInvoiceStart());
   };
   const dispatch = useDispatch();
 
@@ -44,15 +45,18 @@ function HDXInvoice() {
     dispatch(fetchListInvoiceStart());
   }, [dispatch]);
 
-  const handleDeleteInvoice = async () => {};
+  const handleDeleteInvoice = async (id) => {
+    await apiInstance.delete('/export/' + id);
+    dispatch(fetchListInvoiceStart());
+  };
   return (
     <div className='wrapper'>
-      <div className='container'>
+      <div className='container' style={{ height: '500px', padding: '20px' }}>
         <HeadingPage
-          title_btn='Add New Invoice'
+          title_btn='hóa đơn xuất'
           showForm={showForm}
           hideForm={hideForm}
-          placeholder='Search By Id'
+          placeholder='Mã hóa đơn'
         />
         <Row>
           <Col span={isForm ? 24 : 0}>

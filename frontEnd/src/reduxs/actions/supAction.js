@@ -24,3 +24,10 @@ export const fetchListSupFail = () => {
     type: Type.FETCH_LIST_SUP_FAIL,
   };
 };
+
+export const findSupByName = (name) => {
+  return {
+    type: Type.FIND_SUPPLIER_BY_NAME,
+    payload: name,
+  };
+};

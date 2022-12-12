@@ -7,8 +7,8 @@ const importInfo = new Schema({
     type: String,
     required: true,
   },
-  iid: {
-    type: String,
+  imid: {
+    type: Number,
     required: true,
   },
   price: {

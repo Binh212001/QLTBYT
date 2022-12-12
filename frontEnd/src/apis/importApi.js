@@ -1,14 +1,15 @@
 import apiInstance from './apiInstance';
 
-const exportApi = {
+const importApi = {
   fetchListInvoice: () => {
-    return apiInstance.get('/export/1');
+    return apiInstance.get('/import/1');
   },
   fetchInvoiceById: (id) => {
     return apiInstance.get('/equitment/item/' + id);
   },
-  fetchInvoiceInformation: (id) => {
-    return apiInstance.get('/export/information/' + id);
+  fetchInvoiceInformationProduct: (id) => {
+    console.log('🚀 ~ file: importApi.js:11 ~ id', id);
+    return apiInstance.get('/import/information/' + id);
   },
 
   delInvoice: (id) => {
@@ -16,4 +17,4 @@ const exportApi = {
   },
 };
 
-export default exportApi;
+export default importApi;

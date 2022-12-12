@@ -6,7 +6,6 @@ import cusApi from '../../apis/cusApi';
 import DynamicForm from '../../components/form/DynamicForm';
 import HeadingPage from '../../components/heading/HeadingPage';
 import { fetchListCusStart } from '../../reduxs/actions/cusAction';
-import { Pagination } from 'antd';
 const columns = [
   {
     title: 'Id',
@@ -14,16 +13,16 @@ const columns = [
   },
 
   {
-    title: 'Name',
+    title: 'Tên',
     key: 'name',
   },
 
   {
-    title: 'Address',
+    title: 'Địa chỉ',
     key: 'address',
   },
   {
-    title: 'Phone',
+    title: 'Số điện thoại',
     key: 'phone',
   },
 
@@ -42,7 +41,7 @@ function Customer() {
   });
 
   const dispatch = useDispatch();
-  const { customer, count } = useSelector((state) => state.customer);
+  const { customer } = useSelector((state) => state.customer);
 
   useEffect(() => {
     dispatch(fetchListCusStart());
@@ -61,15 +60,12 @@ function Customer() {
   };
   const hideForm = () => {
     setIsForm(false);
+    dispatch(fetchListCusStart());
   };
 
   const deleteCus = async (id) => {
     await cusApi.delCus(id);
     dispatch(fetchListCusStart());
-  };
-
-  const handleCurrentPage = (page) => {
-    dispatch(fetchListCusStart(page));
   };
 
   return (
@@ -85,10 +81,10 @@ function Customer() {
           />
         ) : null}
       </div>
-      <div className='container'>
+      <div className='container' style={{ height: '500px', padding: '20px' }}>
         <HeadingPage
           placeholder='Search By Name'
-          title_btn='Add New Customer'
+          title_btn='khách hàng'
           showForm={showForm}
           hideForm={hideForm}
         />
@@ -102,6 +98,7 @@ function Customer() {
                 className='table'
                 style={{
                   width: '100%',
+                  height: '350px',
                 }}>
                 <thead>
                   <tr className='tbrow'>
@@ -129,12 +126,6 @@ function Customer() {
               </table>
             </div>
           </Col>
-          <Pagination
-            defaultCurrent={1}
-            pageSize={7}
-            total={count}
-            onChange={(page) => handleCurrentPage(page)}
-          />
         </Row>
       </div>
     </div>

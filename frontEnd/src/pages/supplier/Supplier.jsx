@@ -14,18 +14,18 @@ const columns = [
   },
 
   {
-    title: 'Name',
+    title: 'Tên',
 
     key: 'name',
   },
 
   {
-    title: 'Address',
+    title: 'Địa chỉ',
 
     key: 'address',
   },
   {
-    title: 'Phone',
+    title: 'Số điện thoại',
 
     key: 'phone',
   },
@@ -45,7 +45,7 @@ function Supplier() {
     phone: '',
   });
   const dispatch = useDispatch();
-  const { supplier, count } = useSelector((state) => state.supplier);
+  const { supplier } = useSelector((state) => state.supplier);
 
   useEffect(() => {
     dispatch(fetchListSupStart());
@@ -64,6 +64,7 @@ function Supplier() {
   };
   const hideForm = () => {
     setIsForm(false);
+    dispatch(fetchListSupStart());
   };
 
   const deleteSup = async (id) => {
@@ -83,9 +84,9 @@ function Supplier() {
           />
         ) : null}
       </div>
-      <div className='container'>
+      <div className='container' style={{ height: '500px', padding: '20px' }}>
         <HeadingPage
-          title_btn='Add New Supplier'
+          title_btn='nhà cung cấp'
           placeholder='Search By Name'
           showForm={showForm}
           hideForm={hideForm}
@@ -100,6 +101,7 @@ function Supplier() {
                 className='table'
                 style={{
                   width: '100%',
+                  height: '350px',
                 }}>
                 <thead>
                   <tr className='tbrow'>

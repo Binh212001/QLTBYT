@@ -24,3 +24,10 @@ export const fetchListCusFail = () => {
     type: Type.FETCH_LIST_CUS_FAIL,
   };
 };
+
+export const findCusByName = (name) => {
+  return {
+    type: Type.FIND_CUSTOMER_BY_NAME,
+    payload: name,
+  };
+};

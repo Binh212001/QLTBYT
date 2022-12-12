@@ -1,13 +1,12 @@
-import exportApi from '../../apis/exportApi';
+import importApi from '../../apis/importApi';
 import * as Type from '../constant/constant';
 
 export const fetchListInvoiceStart = () => {
   return async (dispatch) => {
-    return exportApi
+    return importApi
       .fetchListInvoice()
       .then((data) => {
         console.log(data);
-
         dispatch(fetchListInvoiceSuccess(data));
       })
       .catch((err) => {
@@ -18,20 +17,20 @@ export const fetchListInvoiceStart = () => {
 
 export const fetchListInvoiceSuccess = (data) => {
   return {
-    type: Type.FETCH_LIST_EXPORT_SUCCESS,
+    type: Type.FETCH_LIST_IMPORT_SUCCESS,
     payload: data,
   };
 };
 
 export const fetchListInvoiceFail = () => {
   return {
-    type: Type.FETCH_LIST_EXPORT_FAIL,
+    type: Type.FETCH_LIST_IMPORT_FAIL,
   };
 };
 
-export const findExportById = (name) => {
+export const findImportById = (name) => {
   return {
-    type: Type.FIND_EXPORT_BY_ID,
+    type: Type.FIND_IMPORT_BY_ID,
     payload: name,
   };
 };

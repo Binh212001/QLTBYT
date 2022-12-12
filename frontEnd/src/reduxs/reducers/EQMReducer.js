@@ -15,6 +15,10 @@ const eqmRdc = (state = innitialState, { type, payload }) => {
       return { ...state, eqm, count, status };
     case Type.FETCH_LIST_EQM_FAIL:
       return state;
+
+    case Type.FIND_EQM_BY_ID:
+      const x = state.eqm.filter((x) => x.id.toLowerCase().includes(payload.toLowerCase()) === 1);
+      return { eqm: x };
     default:
       return state;
   }

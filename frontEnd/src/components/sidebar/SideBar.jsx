@@ -14,22 +14,22 @@ function SideBar() {
 
       <List>
         <Item>
-          <CustomLink to={page.home}>Home</CustomLink>
+          <CustomLink to={page.home}>Trang chủ</CustomLink>
         </Item>
         <Item>
-          <CustomLink to={page.equitment}>Equitment</CustomLink>
+          <CustomLink to={page.equitment}>Thiết bị</CustomLink>
         </Item>
         <Item>
-          <CustomLink to={page.customer}>Customer</CustomLink>
+          <CustomLink to={page.customer}>Khách hàng</CustomLink>
         </Item>
         <Item>
-          <CustomLink to={page.supplier}>Supplier</CustomLink>
+          <CustomLink to={page.supplier}>Nhã cung cấp</CustomLink>
         </Item>
         <Item>
-          <CustomLink to={page.hdn}>Import</CustomLink>
+          <CustomLink to={page.hdn}>Nhập hàng</CustomLink>
         </Item>
         <Item>
-          <CustomLink to={page.hdx}>Export</CustomLink>
+          <CustomLink to={page.hdx}>Xuất hàng</CustomLink>
         </Item>
       </List>
     </div>

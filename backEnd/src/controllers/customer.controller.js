@@ -1,5 +1,12 @@
 const httpStatusCode = require('../config/constant');
-const { getListC, getCById, postC, putC, delC } = require('../services/customer.service');
+const {
+  getListC,
+  getCById,
+  postC,
+  putC,
+  delC,
+  findByName,
+} = require('../services/customer.service');
 const Customer = require('../models/Customer.model');
 
 const getAllCus = async (req, res) => {
@@ -60,10 +67,23 @@ const delCus = async (req, res) => {
   }
 };
 
+const getCusByName = async (req, res) => {
+  const { name } = req.params;
+  try {
+    const value = await findByName(name);
+    return value;
+  } catch (error) {
+    return res.status(httpStatusCode.INTERNAL_SERVER).json({
+      message: error.message,
+    });
+  }
+};
+
 module.exports = {
   getAllCus,
   getCusById,
   postCus,
   putCus,
   delCus,
+  getCusByName,
 };

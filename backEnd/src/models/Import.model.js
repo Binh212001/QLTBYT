@@ -6,8 +6,13 @@ const importSchema = new Schema({
   id: {
     type: Number,
     require: true,
+    unique: true,
   },
-  supplierId: { type: Number, ref: 'supplier' },
+  supplierid: { type: Number, ref: 'supplier' },
+  status: {
+    type: Boolean,
+    default: true,
+  },
   createdAt: {
     type: Date,
     required: true,

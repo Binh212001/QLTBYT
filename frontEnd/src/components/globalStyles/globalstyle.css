@@ -67,3 +67,7 @@ input {
 .tbrow > td {
   border: 1px solid #333;
 }
+
+td {
+  text-align: center;
+}

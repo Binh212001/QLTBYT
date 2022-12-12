@@ -1,15 +1,15 @@
-const exInvoice = require('../models/ExportSchema.model');
-const exInfo = require('../models/exportInfo');
+const imInvoice = require('../models/Import.model');
+const imInfo = require('../models/ImportInfor');
 const EQM = require('../models/Equitment.model');
 const pagination = require('../utils/pagination');
 
 const addNewBill = async (data) => {
-  const { id, customerid, invoice } = data;
+  const { id, supplierid, invoice } = data;
   try {
-    const iv = exInvoice({ id, customerid });
+    const iv = imInvoice({ id, supplierid });
     await iv.save();
     invoice.map(async (x) => {
-      const item = new exInfo(x);
+      const item = new imInfo(x);
       await item.save();
       await EQM.findOneAndUpdate(
         { id: x.eid },
@@ -24,22 +24,21 @@ const addNewBill = async (data) => {
   }
 };
 
-const getAllBill = async () => {
+const getAllBill = async (page) => {
   try {
-    const data = await exInvoice.aggregate([
+    const data = await imInvoice.aggregate([
       { $match: { status: true } },
-
       {
         $lookup: {
-          from: 'customers',
-          localField: 'customerid',
+          from: 'suppliers',
+          localField: 'supplierid',
           foreignField: 'id',
-          as: 'customer',
+          as: 'supplier',
         },
       },
     ]);
 
-    const count = await exInvoice.countDocuments({});
+    const count = await imInvoice.countDocuments({});
     return {
       data,
       count,
@@ -52,7 +51,7 @@ const getBillById = async () => {};
 const removeBill = async (id) => {
   try {
     if (id) {
-      return await exInvoice.findOneAndUpdate({ id }, { status: false }, { new: true });
+      return await imInvoice.findOneAndUpdate({ id }, { status: false }, { new: true });
     } else {
       return;
     }
@@ -63,8 +62,8 @@ const removeBill = async (id) => {
 
 const getInfomationBill = async (id) => {
   try {
-    const data = await exInfo.aggregate([
-      { $match: { exid: id } },
+    const data = await imInfo.aggregate([
+      { $match: { imid: id } },
       {
         $lookup: {
           from: 'equitments',

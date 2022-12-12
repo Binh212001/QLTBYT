@@ -15,6 +15,13 @@ const cusRDC = (state = innitialState, { type, payload }) => {
       return { ...state, customer, count, status };
     case Type.FETCH_LIST_CUS_FAIL:
       return state;
+
+    case Type.FIND_CUSTOMER_BY_NAME:
+      const x = state.customer.filter(
+        (x) => x.name.toLowerCase().includes(payload.toLowerCase()) === 1,
+      );
+
+      return { customer: x };
     default:
       return state;
   }

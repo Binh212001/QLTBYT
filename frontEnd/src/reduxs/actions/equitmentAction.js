@@ -27,3 +27,10 @@ export const fetchListEqmFail = () => {
     type: Type.FETCH_LIST_EQM_FAIL,
   };
 };
+
+export const findEQMById = (name) => {
+  return {
+    type: Type.FIND_EQM_BY_ID,
+    payload: name,
+  };
+};

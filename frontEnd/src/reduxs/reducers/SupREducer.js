@@ -15,6 +15,13 @@ const supRDC = (state = innitialState, { type, payload }) => {
       return { ...state, supplier, count, status };
     case Type.FETCH_LIST_SUP_FAIL:
       return state;
+
+    case Type.FIND_SUPPLIER_BY_NAME:
+      const x = state.supplier.filter(
+        (x) => x.name.toLowerCase().includes(payload.toLowerCase()) === 1,
+      );
+
+      return { ...state, supplier: x };
     default:
       return state;
   }

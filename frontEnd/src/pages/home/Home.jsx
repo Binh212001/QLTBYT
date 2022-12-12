@@ -10,7 +10,7 @@ function GeneralItem({ item }) {
         <h4>{item.text}</h4>
         <hr />
         <Row className='item_p2'>
-          <Col span={12}>This mouth</Col>
+          <Col span={12}>Tháng này</Col>
           <Col span={12}>
             <Tag color={item.color}> ${item.cash}</Tag>
           </Col>
@@ -22,24 +22,24 @@ function GeneralItem({ item }) {
 
 const columns = [
   {
-    title: 'Id',
+    title: 'Mã',
     dataIndex: 'id',
     key: 'id',
   },
 
   {
-    title: 'Name',
+    title: 'Họ tên',
     dataIndex: 'name',
     key: 'name',
   },
 
   {
-    title: 'Address',
+    title: 'Địa chỉ',
     dataIndex: 'address',
     key: 'address',
   },
   {
-    title: 'Phone',
+    title: 'Số điện thoại',
     dataIndex: 'phone',
     key: 'phone',
   },
@@ -47,24 +47,24 @@ const columns = [
 
 const item = [
   {
-    text: 'Import',
+    text: 'Nhập',
     cash: '34000',
     color: 'blue',
   },
   {
-    text: 'Export',
-    cash: '34000',
+    text: 'Xuất',
+    cash: '38000',
     color: 'cyan',
   },
 
   {
-    text: 'Payment',
-    cash: '34000',
+    text: 'Trả',
+    cash: '45000',
     color: 'green',
   },
   {
-    text: 'Due Balance',
-    cash: '34000',
+    text: 'Số dư',
+    cash: '40000',
     color: 'red',
   },
 ];
@@ -88,7 +88,7 @@ function Home() {
           </Col>
           <Col className='p10 ' sm={24} md={24} lg={6}>
             <div className='preview__cus'>
-              <h4> Customer Preview</h4>
+              <h4> Tổng quan khách hàng</h4>
               <h4>
                 <Progress
                   type='circle'
@@ -96,7 +96,7 @@ function Home() {
                   strokeColor={{ '0%': '#108ee9', '100%': '#87d068' }}
                 />
               </h4>
-              <h4>New Customer this Month</h4>
+              <h4>Khách hàng mới tháng này</h4>
             </div>
           </Col>
         </Row>

@@ -1,24 +1,17 @@
 //// EQM
-
+export const FIND_EQM_BY_ID = 'FIND_EQM_BY_ID';
 export const FETCH_LIST_EQM_SUCCESS = 'FETCH_LIST_EQM_SUCCESS';
 export const FETCH_LIST_EQM_FAIL = 'FETCH_LIST_EQM_FAIL';
 
-export const FETCH_EQM_BY_iD = 'FETCH_EQM_BY_iD';
-export const POST_NEW_EQM = 'POST_NEW_EQM';
-export const UPDATE_EQM = 'UPDATE_EQM';
-export const DELETE_EQM = 'DELETE_EQM';
 //CUSTOMER
 export const FETCH_LIST_CUS_SUCCESS = 'FETCH_LIST_CUS_SUCCESS';
 export const FETCH_LIST_CUS_FAIL = 'FETCH_LIST_CUS_FAIL';
-
-export const FETCH_CUS_BY_iD = 'FETCH_CUS_BY_iD';
-export const POST_NEW_CUS = 'POST_NEW_CUS';
-export const UPDATE_CUS = 'UPDATE_CUS';
-export const DELETE_CUS = 'DELETE_CUS';
+export const FIND_CUSTOMER_BY_NAME = 'FIND_CUSTOMER_BY_NAME';
 
 ///SUPPLIER
 export const FETCH_LIST_SUP_SUCCESS = 'FETCH_LIST_SUP_SUCCESS';
 export const FETCH_LIST_SUP_FAIL = 'FETCH_LIST_SUP_FAIL';
+export const FIND_SUPPLIER_BY_NAME = 'FIND_SUPPLIER_BY_NAME';
 
 export const FETCH_SUP_BY_iD = 'FETCH_SUP_BY_iD';
 export const POST_NEW_SUP = 'POST_NEW_SUP';
@@ -29,3 +22,20 @@ export const DELETE_SUP = 'DELETE_SUP';
 
 export const FETCH_LIST_EXPORT_SUCCESS = 'FETCH_LIST_EXPORT_SUCCESS';
 export const FETCH_LIST_EXPORT_FAIL = 'FETCH_LIST_EXPORT_FAIL';
+export const FIND_EXPORT_BY_ID = 'FIND_EXPORT_BY_ID';
+
+/// import
+
+export const FETCH_LIST_IMPORT_SUCCESS = 'FETCH_LIST_IMPORT_SUCCESS';
+export const FETCH_LIST_IMPORT_FAIL = 'FETCH_LIST_IMPORT_FAIL';
+export const FIND_IMPORT_BY_ID = 'FIND_IMPORT_BY_ID';
+
+//login
+
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAIL = 'LOGIN_FAIL';
+export const LOGOUT = 'LOGOUT';
+
+//register
+
+export const REGISTER_FAIL = 'REGISTER_FAIL';

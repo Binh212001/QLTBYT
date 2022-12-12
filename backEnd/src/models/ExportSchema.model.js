@@ -6,11 +6,12 @@ const exportSchema = new Schema({
   id: {
     type: Number,
     require: true,
+    unique: true,
   },
   customerid: { type: Number, ref: 'customer', require: true },
   status: {
     type: Boolean,
-    default: 1,
+    default: true,
   },
   createdAt: {
     type: Date,

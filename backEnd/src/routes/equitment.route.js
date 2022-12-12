@@ -9,7 +9,7 @@ const {
 const express = require('express');
 const router = express.Router();
 
-router.get('/equitment/:page', getAll);
+router.get('/equitment', getAll);
 router.get('/equitment/item/:id', getById);
 router.post('/equitment', postEquiment);
 router.put('/equitment/:id', updateEquiment);

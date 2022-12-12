@@ -5,6 +5,7 @@ const equitmentSchema = new Schema({
   id: {
     type: String,
     required: true,
+    unique: true,
   },
   name: {
     type: String,
@@ -32,6 +33,10 @@ const equitmentSchema = new Schema({
   },
   description: {
     type: String,
+  },
+  status: {
+    type: Boolean,
+    default: true,
   },
   quantyty: {
     type: Number,

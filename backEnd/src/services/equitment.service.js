@@ -2,9 +2,7 @@ const Equitment = require('../models/Equitment.model');
 const pagination = require('../utils/pagination');
 const getListE = async (page) => {
   try {
-    return await Equitment.find({})
-      .skip((await pagination(page)).skip)
-      .limit((await pagination(page)).limit);
+    return await Equitment.find({ status: true });
   } catch (error) {
     throw new Error(error);
   }
@@ -55,7 +53,7 @@ const putE = async (data) => {
 const delE = async (id) => {
   try {
     if (id) {
-      return await Equitment.remove({ id });
+      return await Equitment.findOneAndUpdate({ id }, { status: false });
     } else {
       return;
     }

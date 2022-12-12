@@ -8,6 +8,7 @@ const page = {
   hdx: '/hdx',
   auth: '/auth',
   exportInformation: '/hdx/information/:customer/:id',
+  importInformation: '/hdn/information/:supplier/:id',
 };
 
 export default page;

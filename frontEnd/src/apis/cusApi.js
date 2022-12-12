@@ -1,10 +1,13 @@
 import apiInstance from './apiInstance';
 
 const cusApi = {
-  fetchListCus: (page) => {
-    return apiInstance.get('/customer/' + page);
+  fetchListCus: () => {
+    return apiInstance.get('/customer');
   },
 
+  findById: (id) => {
+    return apiInstance.get('/customer/' + id);
+  },
   postCus: (data) => {
     return apiInstance.post('/customer', data);
   },

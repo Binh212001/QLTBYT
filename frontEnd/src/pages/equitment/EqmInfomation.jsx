@@ -53,8 +53,9 @@ function EqmInfomation() {
           {equiqment?.quantyty}
         </p>
 
-        <p>
+        <p style={{ whiteSpace: 'pre-line' }}>
           <strong>Mô tả:</strong>
+          <br />
           {equiqment?.description}
         </p>
       </Col>

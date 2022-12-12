@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import exportApi from '../../apis/exportApi';
+import importApi from '../../apis/importApi';
 
 const columns = [
   {
@@ -16,14 +17,14 @@ const columns = [
     title: 'Tổng',
   },
 ];
-function HDXInfomation() {
-  const { id, customer } = useParams();
+function HDNInformation() {
+  const { id, supplier } = useParams();
   const [productList, setProductList] = useState([]);
-  const [sum, setSum] = useState(0);
 
+  const [sum, setSum] = useState(0);
   useEffect(() => {
     const fetchProducts = async () => {
-      const value = await exportApi.fetchInvoiceInformation(parseInt(id));
+      const value = await importApi.fetchInvoiceInformationProduct(parseInt(id));
       let tong = 0;
       value.forEach((e) => {
         tong = tong + e.amount * e.price;
@@ -37,8 +38,8 @@ function HDXInfomation() {
   return (
     <div className='container' style={{ height: '500px', padding: '20px' }}>
       <p>
-        <strong>Customer:</strong>
-        {customer}
+        <strong>Supplier:</strong>
+        {supplier}
       </p>
       <table
         className='table'
@@ -74,4 +75,4 @@ function HDXInfomation() {
   );
 }
 
-export default HDXInfomation;
+export default HDNInformation;
